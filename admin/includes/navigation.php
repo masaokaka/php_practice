@@ -33,14 +33,14 @@
                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                </li>
                <li>
-                   <a href="javascript:;" data-toggle="collapse" data-target="#post_dropdown">
+                   <a data-toggle="collapse" data-target="#post_dropdown">
                        <i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                    <ul id="post_dropdown" class="collapse">
                        <li>
-                           <a href="#">View All Posts</a>
+                           <a href="posts.php">View All Posts</a>
                        </li>
                        <li>
-                           <a href="#">Add Post</a>
+                           <a href="posts.php?source=add_post">Add Post</a>
                        </li>
                    </ul>
                </li>
@@ -51,7 +51,7 @@
                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Comments</a>
                </li>
                <li>
-                   <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown">
+                   <a href="./users.php" data-toggle="collapse" data-target="#users_dropdown">
                        <i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                    <ul id="users_dropdown" class="collapse">
                        <li>

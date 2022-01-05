@@ -17,9 +17,9 @@
                     </h1>
                     <div class="col-xs-12">
                         <?php
-                        $msg = insert_categories($connection);
-                        $msg = update_category($connection);
-                        delete_category($connection);
+                        $msg = insert_categories();
+                        $msg = update_category();
+                        delete_category();
                         display_error($msg);
                         ?>
                     </div>
@@ -75,7 +75,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $result = get_all_categories($connection);
+                                $result = get_all_categories();
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $id = $row["cat_id"];
                                     $title = $row["cat_title"];

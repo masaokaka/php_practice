@@ -1,6 +1,24 @@
 <?php
-function insert_categories($connection)
+
+function confirmQuery($result)
 {
+    global $connection;
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    }
+}
+
+function escape($string)
+{
+
+    global $connection;
+
+    return mysqli_real_escape_string($connection, trim($string));
+}
+
+function insert_categories()
+{
+    global $connection;
     if (isset($_POST["submit"])) {
         $category = $_POST["cat_title"];
         if (strlen($category) === 0) {
@@ -16,8 +34,9 @@ function insert_categories($connection)
         }
     }
 }
-function update_category($connection)
+function update_category()
 {
+    global $connection;
     if (isset($_POST['update'])) {
         $id = $_POST["cat_id"];
         $category = $_POST["cat_title"];
@@ -48,8 +67,9 @@ function display_error($msg)
     }
 }
 
-function get_all_categories($connection)
+function get_all_categories()
 {
+    global $connection;
     $query = "SELECT * FROM categories ";
     $result = mysqli_query($connection, $query);
     if (!$result) {
@@ -59,8 +79,9 @@ function get_all_categories($connection)
     }
 }
 
-function delete_category($connection)
+function delete_category()
 {
+    global $connection;
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
         $query = "DELETE FROM categories WHERE cat_id = {$id} ";
@@ -70,5 +91,17 @@ function delete_category($connection)
         } else {
             header("Location: categories.php");
         }
+    }
+}
+
+function get_all_posts()
+{
+    global $connection;
+    $query = "SELECT * FROM posts ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        return $result;
     }
 }
