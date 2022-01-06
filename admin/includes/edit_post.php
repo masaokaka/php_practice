@@ -83,9 +83,13 @@ if (isset($_POST['update_post'])) {
     </div>
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <select name="post_status" id="post_status" value="<?php echo $status; ?>">
-            <option value="published">Published</option>
-            <option value="draft">Draft</option>
+        <select name="post_status" id="post_status">
+            <option value="published" <?php if ($status == 'published') {
+                                            echo 'selected';
+                                        }; ?>>Published</option>
+            <option value="draft" <?php if ($status == 'draft') {
+                                        echo 'selected';
+                                    }; ?>>Draft</option>
         </select>
     </div>
     <div class="form-group">

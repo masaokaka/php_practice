@@ -79,6 +79,24 @@ function get_all_categories()
     }
 }
 
+function get_a_category($id)
+{
+    global $connection;
+    $query = "SELECT * FROM categories WHERE cat_id = {$id} ";
+    $category_result = mysqli_query($connection, $query);
+    if (!$category_result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        $result = null;
+        while ($row = mysqli_fetch_assoc($category_result)) {
+            $result = $row['cat_title'];
+        };
+        if ($result !== null) {
+            return $result;
+        }
+    }
+};
+
 function delete_category()
 {
     global $connection;
@@ -103,5 +121,101 @@ function get_all_posts()
         die("QUERY FAILED" . mysqli_error(($connection)));
     } else {
         return $result;
+    }
+}
+
+function get_a_post($id)
+{
+    global $connection;
+    $query = "SELECT * FROM posts WHERE post_id = {$id} ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        return $result;
+    }
+}
+
+function get_all_comments()
+{
+    global $connection;
+    $query = "SELECT * FROM comments";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        return $result;
+    }
+}
+
+function get_a_post_comments($p_id)
+{
+    global $connection;
+    $query = "SELECT * FROM comments WHERE comment_post_id = '$p_id' ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        return $result;
+    }
+}
+
+function delete_comment($id)
+{
+    global $connection;
+    $query = "DELETE FROM comments WHERE comment_id = {$id} ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        header("Location: comments.php");
+    }
+}
+
+function update_comment_status($id, $status)
+{
+    global $connection;
+    $query = "UPDATE comments SET comment_status = '$status' WHERE comment_id = '$id' ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        header("Location: comments.php");
+    }
+}
+
+function get_all_users()
+{
+    global $connection;
+    $query = "SELECT * FROM users";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        return $result;
+    }
+}
+
+function delete_user($id)
+{
+    global $connection;
+    $query = "DELETE FROM users WHERE user_id = {$id} ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        header("Location: users.php");
+    }
+}
+
+function update_user_role($id, $role)
+{
+    global $connection;
+    $query = "UPDATE users SET user_role = '$role' WHERE user_id = '$id' ";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error(($connection)));
+    } else {
+        header("Location: users.php");
     }
 }

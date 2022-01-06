@@ -21,7 +21,7 @@
             $id = $row['post_id'];
             $author = $row['post_author'];
             $title = $row['post_title'];
-            $category = $row['post_category_id'];
+            $category = get_a_category($row['post_category_id']);
             $status = $row['post_status'];
             $image = $row['post_image'];
             $tags = $row['post_tags'];
